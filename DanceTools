@@ -1763,6 +1763,12 @@ tool.Name = "Laugh"
 tool.RequiresHandle = false
 tool.Parent = backpack
 
+        writefile("Laugh Theme.mp3", game:HttpGet("https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/laugh-made-with-Voicemod.mp3"))
+-- Load Animator if not already loaded
+if not getgenv()["Animator"] then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/Source.Lua"))()
+    end
+
 local Anim = nil
 local sound = nil
 
@@ -1775,7 +1781,7 @@ tool.Equipped:Connect(function()
             Anim:Play()
         end)
         sound = Instance.new("Sound")
-        sound.SoundId = getcustomasset("Pretty Princess Theme.mp3")
+        sound.SoundId = getcustomasset("Laugh Theme.mp3")
         sound.Volume = 2
         sound.Looped = true
         sound.Parent = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
@@ -1834,5 +1840,5 @@ tool.Unequipped:Connect(function()
         sound:Stop()
         sound:Destroy()
     end
-    print("Dance 36 and music stopped")
+    print("Dance 37 and music stopped")
 end)
