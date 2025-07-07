@@ -1859,7 +1859,7 @@ tool.Name = "Pick Up The Phone"
 tool.RequiresHandle = false
 tool.Parent = backpack
 
-        writefile("Pick Up The Phone Theme.mp3", game:HttpGet("https://github.com/TheScript101/Reanim-Repost/blob/main/Sounds/pick-up-the-phone-made-with-Voicemod.mp3"))
+        writefile("Pick Up The Phone Theme.mp3", game:HttpGet("https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/pick-up-the-phone-made-with-Voicemod.mp3"))
 -- Load Animator if not already loaded
 if not getgenv()["Animator"] then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/Source.Lua"))()
