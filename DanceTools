@@ -1,7 +1,7 @@
 -- gObl00x Notification
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 	Title = "gOb scripts";
-	Text = "LOL Time to Exploit!";
+	Text = "This is a repost of the original script with some dances added. THIS IS NOT MY ORIGINAL SCRIPT!";
 	Icon = "rbxthumb://type=Asset&id=126389658690593&w=150&h=150"})
 Duration = 15;
 
@@ -1811,7 +1811,7 @@ local sound = nil
 tool.Equipped:Connect(function()
     local character = player.Character
     if character then
-        Anim = Animator.new(character, 13845017130)
+        Anim = Animator.new(character, 107654449068194)
         Anim:Play()
         Anim.Stopped:Connect(function()
             Anim:Play()
