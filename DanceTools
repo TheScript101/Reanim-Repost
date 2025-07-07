@@ -1848,3 +1848,51 @@ tool.Unequipped:Connect(function()
     end
     print("Dance 37 and music stopped")
 end)
+
+-- Dance 38 (Pick Up The Phone)
+local player = game.Players.LocalPlayer
+local backpack = player:WaitForChild("Backpack")
+
+-- Create the tool
+local tool = Instance.new("Tool")
+tool.Name = "Pick Up The Phone"
+tool.RequiresHandle = false
+tool.Parent = backpack
+
+        writefile("Pick Up The Phone Theme.mp3", game:HttpGet("https://github.com/TheScript101/Reanim-Repost/blob/main/Sounds/pick-up-the-phone-made-with-Voicemod.mp3"))
+-- Load Animator if not already loaded
+if not getgenv()["Animator"] then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/Source.Lua"))()
+    end
+
+local Anim = nil
+local sound = nil
+
+tool.Equipped:Connect(function()
+    local character = player.Character
+    if character then
+        Anim = Animator.new(character, 123845810306597)
+        Anim:Play()
+        Anim.Stopped:Connect(function()
+            Anim:Play()
+        end)
+        sound = Instance.new("Sound")
+        sound.SoundId = getcustomasset("Pick Up The Phone Theme.mp3")
+        sound.Volume = 2
+        sound.Looped = true
+        sound.Parent = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+        sound:Play()
+    end
+end)
+
+tool.Unequipped:Connect(function()
+    if Anim then
+        Anim:Stop()
+        Anim:Destroy()
+    end
+    if sound then
+        sound:Stop()
+        sound:Destroy()
+    end
+    print("Dance 38 and music stopped")
+end)
