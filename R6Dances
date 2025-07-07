@@ -41,7 +41,7 @@ local finished = false
 
 task.spawn(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/CharacterReanim"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/gObl00x/My-Scripts/refs/heads/main/Epik%20R6%20Dancezz"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/DanceTools"))()
 end)
 
 repeat task.wait() until finished
