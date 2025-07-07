@@ -1,7 +1,7 @@
 -- gObl00x Notification
 game:GetService("StarterGui"):SetCore("SendNotification", { 
 	Title = "gOb scripts";
-	Text = "This is a repost of the original script with some dances added. THIS IS NOT MY ORIGINAL SCRIPT!";
+	Text = "This is a edit of the original script with some stuff added. THIS IS NOT MY ORIGINAL SCRIPT!";
 	Icon = "rbxthumb://type=Asset&id=126389658690593&w=150&h=150"})
 Duration = 15;
 
@@ -1907,7 +1907,7 @@ tool.Name = "Hysteria"
 tool.RequiresHandle = false
 tool.Parent = backpack
 
-        writefile("Hysteria Theme.mp3", game:HttpGet("https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/they-dont-love-you-like-i-love-you-made-with-Voicemod.mp3"))
+        writefile("Hysteria Theme.mp3", game:HttpGet("https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/i-think-i'll-lose-my-mind-in-hysteria...-made-with-Voicemod.mp3"))
 -- Load Animator if not already loaded
 if not getgenv()["Animator"] then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/Source.Lua"))()
