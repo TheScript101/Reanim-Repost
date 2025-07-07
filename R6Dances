@@ -40,7 +40,7 @@ settings["Names to exclude from transparency"] = {
 local finished = false
 
 task.spawn(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/CharacterReanim"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/CharacterReanim?token=GHSAT0AAAAAAC4Z3O3FFC7YH64H46KZ6HYK2DLGEPA"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/DanceTools"))()
 end)
 
