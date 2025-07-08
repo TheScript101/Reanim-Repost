@@ -234,39 +234,61 @@ main.Position = UDim2.new(0.5, 0, 0.5, 0)
 main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 Instance.new("UICorner", main).CornerRadius = UDim.new(0, 12)
 
--- Title
+-- Title (moved to the right)
 local title = Instance.new("TextLabel", main)
 title.Text = "R6 Animator"
 title.Font = Enum.Font.GothamBlack
-title.TextSize = 24
+title.TextSize = 27
 title.TextColor3 = Color3.new(1, 1, 1)
 title.BackgroundTransparency = 1
-title.Size = UDim2.new(1, -20, 0, 30)
-title.Position = UDim2.new(0, 10, 0, 10)
+title.Size = UDim2.new(0, 160, 0, 20)
+title.Position = UDim2.new(1, -200, 0, 12.5)
 
--- Separator
+-- Search Label
+local searchLabel = Instance.new("TextLabel", main)
+searchLabel.Text = "Search:"
+searchLabel.Font = Enum.Font.SourceSansBold
+searchLabel.TextSize = 16
+searchLabel.TextColor3 = Color3.new(1, 1, 1)
+searchLabel.BackgroundTransparency = 1
+searchLabel.Size = UDim2.new(0, 60, 0, 25)
+searchLabel.Position = UDim2.new(0, 10, 0, 12)
+
+-- Search Box
+local searchBox = Instance.new("TextBox", main)
+searchBox.PlaceholderText = "__________"
+searchBox.Font = Enum.Font.SourceSans
+searchBox.TextSize = 16
+searchBox.TextColor3 = Color3.new(1, 1, 1)
+searchBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+searchBox.BorderColor3 = Color3.fromRGB(80, 80, 80)
+searchBox.Size = UDim2.new(0, 140, 0, 25)
+searchBox.Position = UDim2.new(0, 75, 0, 10)
+Instance.new("UICorner", searchBox).CornerRadius = UDim.new(0, 4)
+
+-- Divider
 local sep = Instance.new("Frame", main)
 sep.Size = UDim2.new(1, -20, 0, 2)
 sep.Position = UDim2.new(0, 10, 0, 45)
 sep.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
 sep.BorderSizePixel = 0
 
--- Scroll Frame
+-- Scroll Frame (unchanged)
 local scrollFrame = Instance.new("ScrollingFrame", main)
 scrollFrame.Size = UDim2.new(1, -20, 1, -70)
 scrollFrame.Position = UDim2.new(0, 10, 0, 60)
 scrollFrame.BackgroundTransparency = 1
 scrollFrame.ScrollBarThickness = 6
 scrollFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
-scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Let automatic sizing do the work
+scrollFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
 scrollFrame.ClipsDescendants = true
 
--- UIGridLayout
+-- UIGridLayout (unchanged)
 local gridLayout = Instance.new("UIGridLayout", scrollFrame)
 gridLayout.CellSize = UDim2.new(0, 70, 0, 50)
 gridLayout.CellPadding = UDim2.new(0, 10, 0, 10)
 gridLayout.FillDirectionMaxCells = 5
-gridLayout.FillDirection = Enum.FillDirection.Vertical
+gridLayout.FillDirection = Enum.FillDirection.Horizontal
 gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 gridLayout.VerticalAlignment = Enum.VerticalAlignment.Top
 gridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
@@ -286,6 +308,7 @@ minBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 minBtn.Size = UDim2.new(0, 30, 0, 30)
 minBtn.Position = UDim2.new(1, -35, 0, 5)
 minBtn.BorderSizePixel = 0
+Instance.new("UICorner", minBtn).CornerRadius = UDim.new(0, 4)
 
 local mini = Instance.new("TextButton", gui)
 mini.Text = "Open"
@@ -304,6 +327,9 @@ mini.MouseButton1Click:Connect(function()
     main.Visible = true
     mini.Visible = false
 end)
+
+-- Store buttons for filtering
+local allButtons = {}
 
 -- Buttons for tools
 for _, def in ipairs(toolDefs) do
@@ -331,4 +357,15 @@ for _, def in ipairs(toolDefs) do
             removeTool(def)
         end
     end)
+
+    -- Store reference for filtering
+    table.insert(allButtons, {Button = btn, Name = def.Name:lower()})
 end
+
+-- Search filter logic
+searchBox:GetPropertyChangedSignal("Text"):Connect(function()
+    local query = searchBox.Text:lower()
+    for _, data in ipairs(allButtons) do
+        data.Button.Visible = (query == "" or data.Name:find(query))
+    end
+end)
