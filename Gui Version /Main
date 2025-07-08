@@ -138,8 +138,31 @@ local toolDefs = {
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Spooky%20Month.mp3",
         AnimationId = 15231364673,
     },
+    {
+        Name        = "Chinese Dance",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Chinese%20Dance.mp3",
+        AnimationId = 124210157097622,
+    },
+    {
+        Name        = "Doodle",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Doodle.mp3",
+        AnimationId = 137721173051346,
+    },
+    {
+        Name        = "Shinji Chair",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Shinji%20Meme.mp3",
+        AnimationId = 130485792890829,
+    },
+    {
+        Name        = "Rakuten Lemonade",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Rakuten%20Lemonade.mp3",
+        AnimationId = 18985726113,
+    },
     -- add more tools here...
 }
+
+
+
 
 
 
