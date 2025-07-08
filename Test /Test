@@ -329,8 +329,12 @@ local function spawnTool(def)
         writefile(def.Name .. ".mp3", game:HttpGet(def.Mp3Url))
     end
 
-    local Animator = getgenv().Animator or loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/Source.Lua"))()
-    getgenv().Animator = Animator
+    local Animator = getgenv().Animator
+    if not Animator then
+        Animator = loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/Source.Lua"))()
+        getgenv().Animator = Animator
+    end
+
 
 
     activeTools[def.Name] = { Tool = tool, Animation = nil, Sound = nil }
