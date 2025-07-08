@@ -258,7 +258,7 @@ scrollFrame.Position = UDim2.new(0, 10, 0, 60)
 scrollFrame.BackgroundTransparency = 1
 scrollFrame.ScrollBarThickness = 6
 scrollFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
-scrollFrame.CanvasSize = UDim2.new(0, 0, 2, 0) -- Default canvas height just in case
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Let automatic sizing do the work
 scrollFrame.ClipsDescendants = true
 
 -- UIGridLayout
@@ -293,7 +293,7 @@ mini.TextColor3 = Color3.new(1, 1, 1)
 mini.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 mini.BorderColor3 = Color3.fromRGB(80, 80, 80)
 mini.Size = UDim2.new(0, 80, 0, 30)
-mini.Position = UDim2.new(0, 10, 0, 10)
+mini.Position = UDim2.new(0, 10, 0, 60)
 mini.Visible = false
 
 minBtn.MouseButton1Click:Connect(function()
