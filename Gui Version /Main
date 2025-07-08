@@ -183,7 +183,10 @@ local toolDefs = {
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Goopie.mp3",
         AnimationId = 7828640127,
     },
-    -- add more tools here...
+    {
+        Name        = "Prince Of Egypt",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Prince%20Of%20Egypt.mp3",
+        AnimationId = 100136360352723,
 }
 
 
