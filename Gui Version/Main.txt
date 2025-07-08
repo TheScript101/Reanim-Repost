@@ -1,0 +1,412 @@
+-- // Executor GUI: R6 Animator with Reanim Tool Toggle //
+
+-- ► SERVICES & PLAYER
+local Players      = game:GetService("Players")
+local StarterGui   = game:GetService("StarterGui")
+local InputService = game:GetService("UserInputService")
+
+local player     = Players.LocalPlayer
+local backpack   = player:FindFirstChild("Backpack") or player:WaitForChild("Backpack")
+local activeTools = {}
+
+-- ► Turn Off Collisions (Client‑Only)
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+-- ► disable collisions on every BasePart in a character
+local function disableCollisionsOnCharacter(char: Model)
+    if not char then return end
+    -- immediate disable
+    for _, part in ipairs(char:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+    -- future parts too (e.g. accessories)
+    char.DescendantAdded:Connect(function(desc)
+        if desc:IsA("BasePart") then
+            desc.CanCollide = false
+        end
+    end)
+end
+
+-- apply to local player
+if localPlayer.Character then
+    disableCollisionsOnCharacter(localPlayer.Character)
+end
+localPlayer.CharacterAdded:Connect(disableCollisionsOnCharacter)
+
+-- apply to all other players
+for _, pl in ipairs(Players:GetPlayers()) do
+    if pl ~= localPlayer then
+        if pl.Character then
+            disableCollisionsOnCharacter(pl.Character)
+        end
+        pl.CharacterAdded:Connect(disableCollisionsOnCharacter)
+    end
+end
+
+-- keep up with new players joining
+Players.PlayerAdded:Connect(function(pl)
+    pl.CharacterAdded:Connect(disableCollisionsOnCharacter)
+    if pl.Character then
+        disableCollisionsOnCharacter(pl.Character)
+    end
+end)
+
+-- ► NOTIFICATIONS
+pcall(function()
+    StarterGui:SetCore("SendNotification", {
+        Title = "Limb Reanim V2";
+        Text  = "ENJOY!";
+        Icon  = "rbxthumb://type=Asset&id=13775452736&w=150&h=150";
+    })
+    task.wait(1)
+    StarterGui:SetCore("SendNotification", {
+        Title = "gOb scripts";
+        Text  = "Edited script with extras. NOT original!";
+        Icon  = "rbxthumb://type=Asset&id=126389658690593&w=150&h=150";
+    })
+end)
+
+-- ► REANIM SETTINGS & LOADER
+local settings = getgenv()
+settings["Use default animations"]            = true
+settings["Fake character transparency level"] = 1
+settings["Disable character scripts"]         = true
+settings["Fake character should collide"]     = true
+settings["Parent real character to fake character"] = false
+settings["Respawn character"]                 = true
+settings["Instant respawn"]                   = false
+settings["Hide HumanoidRootPart"]             = false
+settings["PermaDeath fake character"]         = false
+settings["Names to exclude from transparency"]= {}
+
+task.spawn(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/CharacterReanim"))()
+end)
+
+-- ► TOOL DEFINITIONS (local table)
+local toolDefs = {
+    {
+        Name        = "The Hero",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/The%20Hero.mp3",
+        AnimationId = 133160365635320,
+    },
+    {
+        Name        = "Two",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Two.mp3",
+        AnimationId = 137845929482571,
+    },
+    {
+        Name        = "The Flop",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/The%20Flop.mp3",
+        AnimationId = 84447598378239,
+    },
+    {
+        Name        = "Club Penguin",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Club%20Penguin.mp3",
+        AnimationId = 89761302048916,
+    },
+    {
+        Name        = "Breakdance",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Breakdance.mp3",
+        AnimationId = 132886479585903,
+    },
+    {
+        Name        = "Insanity",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Insanity.mp3",
+        AnimationId = 139483347792972,
+    },
+    {
+        Name        = "Mannrobics",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Mannrobics.mp3",
+        AnimationId = 137456359844967,
+    },
+    {
+        Name        = "Step",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Step.mp3",
+        AnimationId = 124074233795203,
+    },
+    {
+        Name        = "Poke Dance",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Poke%20Dance.mp3",
+        AnimationId = 18986687692,
+    },
+    {
+        Name        = "Spooky Month",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Spooky%20Month.mp3",
+        AnimationId = 15231364673,
+    },
+    {
+        Name        = "Chinese Dance",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Chinese%20Dance.mp3",
+        AnimationId = 124210157097622,
+    },
+    {
+        Name        = "Doodle",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Doodle.mp3",
+        AnimationId = 137721173051346,
+    },
+    {
+        Name        = "Shinji Chair",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Shinji%20Meme.mp3",
+        AnimationId = 130485792890829,
+    },
+    {
+        Name        = "Rakuten Lemonade",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Rakuten%20Lemonade.mp3",
+        AnimationId = 18985726113,
+    },
+    -- add more tools here...
+}
+
+
+
+
+
+
+
+
+-- ► REMOVE TOOL (fully cleans up)
+local function removeTool(def)
+    local data = activeTools[def.Name]
+    if data then
+        if data.Animation then pcall(function() data.Animation:Stop(); data.Animation:Destroy() end) end
+        if data.Sound     then pcall(function() data.Sound:Stop();     data.Sound:Destroy()     end) end
+        if data.Tool      then pcall(function() data.Tool:Destroy()      end) end
+        activeTools[def.Name] = nil
+    end
+    for _, container in ipairs({backpack, player.Character}) do
+        if container then
+            for _, inst in ipairs(container:GetChildren()) do
+                if inst:IsA("Tool") and inst.Name == def.Name then
+                    inst:Destroy()
+                end
+            end
+        end
+    end
+end
+
+-- ► SPAWN TOOL (and hook animation & sound)
+local function spawnTool(def)
+    removeTool(def)
+
+    local tool = Instance.new("Tool")
+    tool.Name           = def.Name
+    tool.RequiresHandle = true
+
+    local handle = Instance.new("Part")
+    handle.Name         = "Handle"
+    handle.Size         = Vector3.new(1,1,1)
+    handle.Transparency = 1
+    handle.CanCollide   = false
+    handle.Parent       = tool
+
+    tool.Parent = backpack
+
+    if not isfile(def.Name .. ".mp3") then
+        writefile(def.Name .. ".mp3", game:HttpGet(def.Mp3Url))
+    end
+
+    if not getgenv().Animator then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/Source.Lua"))()
+    end
+
+    activeTools[def.Name] = { Tool = tool, Animation = nil, Sound = nil }
+
+    tool.Equipped:Connect(function()
+        local char = player.Character
+        if not char then return end
+
+        local anim = Animator.new(char, def.AnimationId)
+        anim:Play()
+        anim.Stopped:Connect(function() anim:Play() end)
+
+        local snd = Instance.new("Sound")
+        snd.SoundId = getcustomasset(def.Name .. ".mp3")
+        snd.Volume  = 2
+        snd.Looped  = true
+        snd.Parent  = char:WaitForChild("HumanoidRootPart")
+        snd:Play()
+
+        activeTools[def.Name].Animation = anim
+        activeTools[def.Name].Sound     = snd
+    end)
+
+    tool.Unequipped:Connect(function()
+        local data = activeTools[def.Name]
+        if data and data.Animation then
+            data.Animation:Stop()
+            data.Animation:Destroy()
+            data.Animation = nil
+        end
+        if data and data.Sound then
+            data.Sound:Stop()
+            data.Sound:Destroy()
+            data.Sound = nil
+        end
+    end)
+
+    task.spawn(function()
+        task.wait(0.1)
+        for _, t in ipairs(backpack:GetChildren()) do
+            if t == tool then
+                local hum = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+                if hum then hum:EquipTool(tool) end
+                break
+            end
+        end
+    end)
+end
+
+-- ► GUI BUILD
+local gui = Instance.new("ScreenGui")
+gui.Name = "R6AnimatorGui"
+gui.ResetOnSpawn = false
+gui.IgnoreGuiInset = true
+gui.Parent = game.CoreGui
+
+-- Main frame
+local main = Instance.new("Frame", gui)
+main.Size = UDim2.new(0, 420, 0, 320)
+main.AnchorPoint = Vector2.new(0.5, 0.5)
+main.Position = UDim2.new(0.5, 0, 0.5, 0)
+main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Instance.new("UICorner", main).CornerRadius = UDim.new(0, 12)
+
+-- Title (moved to the right)
+local title = Instance.new("TextLabel", main)
+title.Text = "R6 Animator"
+title.Font = Enum.Font.GothamBlack
+title.TextSize = 27
+title.TextColor3 = Color3.new(1, 1, 1)
+title.BackgroundTransparency = 1
+title.Size = UDim2.new(0, 160, 0, 20)
+title.Position = UDim2.new(1, -200, 0, 12.5)
+
+-- Search Label
+local searchLabel = Instance.new("TextLabel", main)
+searchLabel.Text = "Search:"
+searchLabel.Font = Enum.Font.SourceSansBold
+searchLabel.TextSize = 16
+searchLabel.TextColor3 = Color3.new(1, 1, 1)
+searchLabel.BackgroundTransparency = 1
+searchLabel.Size = UDim2.new(0, 60, 0, 25)
+searchLabel.Position = UDim2.new(0, 10, 0, 12)
+
+-- Search Box
+local searchBox = Instance.new("TextBox", main)
+searchBox.PlaceholderText = "__________"
+searchBox.Font = Enum.Font.SourceSans
+searchBox.TextSize = 16
+searchBox.TextColor3 = Color3.new(1, 1, 1)
+searchBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+searchBox.BorderColor3 = Color3.fromRGB(80, 80, 80)
+searchBox.Size = UDim2.new(0, 140, 0, 25)
+searchBox.Position = UDim2.new(0, 75, 0, 10)
+Instance.new("UICorner", searchBox).CornerRadius = UDim.new(0, 4)
+
+-- Divider
+local sep = Instance.new("Frame", main)
+sep.Size = UDim2.new(1, -20, 0, 2)
+sep.Position = UDim2.new(0, 10, 0, 45)
+sep.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+sep.BorderSizePixel = 0
+
+-- Scroll Frame (unchanged)
+local scrollFrame = Instance.new("ScrollingFrame", main)
+scrollFrame.Size = UDim2.new(1, -20, 1, -70)
+scrollFrame.Position = UDim2.new(0, 10, 0, 60)
+scrollFrame.BackgroundTransparency = 1
+scrollFrame.ScrollBarThickness = 6
+scrollFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+scrollFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
+scrollFrame.ClipsDescendants = true
+
+-- UIGridLayout (unchanged)
+local gridLayout = Instance.new("UIGridLayout", scrollFrame)
+gridLayout.CellSize = UDim2.new(0, 70, 0, 50)
+gridLayout.CellPadding = UDim2.new(0, 10, 0, 10)
+gridLayout.FillDirectionMaxCells = 5
+gridLayout.FillDirection = Enum.FillDirection.Horizontal
+gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+gridLayout.VerticalAlignment = Enum.VerticalAlignment.Top
+gridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+
+-- Force layout update function
+local function updateScrollCanvas()
+    task.wait()
+    scrollFrame.CanvasSize = UDim2.new(0, 0, 0, gridLayout.AbsoluteContentSize.Y + 10)
+end
+gridLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(updateScrollCanvas)
+
+-- Minimize button
+local minBtn = Instance.new("TextButton", main)
+minBtn.Text = "-"
+minBtn.TextColor3 = Color3.new(1, 1, 1)
+minBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+minBtn.Size = UDim2.new(0, 30, 0, 30)
+minBtn.Position = UDim2.new(1, -35, 0, 5)
+minBtn.BorderSizePixel = 0
+Instance.new("UICorner", minBtn).CornerRadius = UDim.new(0, 4)
+
+local mini = Instance.new("TextButton", gui)
+mini.Text = "Open"
+mini.TextColor3 = Color3.new(1, 1, 1)
+mini.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+mini.BorderColor3 = Color3.fromRGB(80, 80, 80)
+mini.Size = UDim2.new(0, 80, 0, 30)
+mini.Position = UDim2.new(0, 10, 0, 60)
+mini.Visible = false
+
+minBtn.MouseButton1Click:Connect(function()
+    main.Visible = false
+    mini.Visible = true
+end)
+mini.MouseButton1Click:Connect(function()
+    main.Visible = true
+    mini.Visible = false
+end)
+
+-- Store buttons for filtering
+local allButtons = {}
+
+-- Buttons for tools
+for _, def in ipairs(toolDefs) do
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0, 70, 0, 50)
+    btn.TextWrapped = true
+    btn.TextTruncate = Enum.TextTruncate.AtEnd
+    btn.Text = def.Name .. " (OFF)"
+    btn.Font = Enum.Font.SourceSans
+    btn.TextSize = 14
+    btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    btn.TextColor3 = Color3.new(1, 1, 1)
+    btn.BorderSizePixel = 2
+    btn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    btn.Parent = scrollFrame
+
+    local on = false
+    btn.MouseButton1Click:Connect(function()
+        on = not on
+        btn.Text = def.Name .. " (" .. (on and "ON" or "OFF") .. ")"
+        btn.BorderColor3 = on and Color3.fromRGB(0, 170, 255) or Color3.fromRGB(0, 0, 0)
+        if on then
+            spawnTool(def)
+        else
+            removeTool(def)
+        end
+    end)
+
+    -- Store reference for filtering
+    table.insert(allButtons, {Button = btn, Name = def.Name:lower()})
+end
+
+-- Search filter logic
+searchBox:GetPropertyChangedSignal("Text"):Connect(function()
+    local query = searchBox.Text:lower()
+    for _, data in ipairs(allButtons) do
+        data.Button.Visible = (query == "" or data.Name:find(query))
+    end
+end)
