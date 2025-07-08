@@ -103,6 +103,11 @@ local toolDefs = {
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/The%20Flop.mp3",
         AnimationId = 84447598378239,
     },
+    {
+        Name        = "Club Penguin",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Club%20Penguin.mp3",
+        AnimationId = 89761302048916,
+    },
     -- add more tools here...
 }
 
