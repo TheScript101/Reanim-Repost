@@ -108,7 +108,10 @@ local toolDefs = {
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Club%20Penguin.mp3",
         AnimationId = 89761302048916,
     },
-    -- add more tools here...
+    {
+        Name        = "Breakdance",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Breakdance.mp3",
+        AnimationId = 132886479585903,
 }
 
 -- ► REMOVE TOOL (fully cleans up)
