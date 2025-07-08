@@ -348,7 +348,7 @@ scrollFrame.Position = UDim2.new(0, 10, 0, 60)
 scrollFrame.BackgroundTransparency = 1
 scrollFrame.ScrollBarThickness = 6
 scrollFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
-scrollFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Let AutomaticCanvasSize do its job
 scrollFrame.ClipsDescendants = true
 
 -- UIGridLayout (unchanged)
@@ -366,7 +366,6 @@ local function updateScrollCanvas()
     task.wait()
     scrollFrame.CanvasSize = UDim2.new(0, 0, 0, gridLayout.AbsoluteContentSize.Y + 10)
 end
-gridLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(updateScrollCanvas)
 
 -- Minimize button
 local minBtn = Instance.new("TextButton", main)
