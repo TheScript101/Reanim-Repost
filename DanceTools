@@ -1955,7 +1955,7 @@ tool.Name = "Laugh 2"
 tool.RequiresHandle = false
 tool.Parent = backpack
 
-        writefile("Laugh2 Theme.mp3", game:HttpGet("https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/goofy-laugh-1-made-with-Voicemod.mp3"))
+        writefile("Laugh2 Theme.mp3", game:HttpGet("https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/laugh-made-with-Voicemod(1).mp3"))
 -- Load Animator if not already loaded
 if not getgenv()["Animator"] then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TheScript101/Reanim-Repost/refs/heads/main/Source.Lua"))()
