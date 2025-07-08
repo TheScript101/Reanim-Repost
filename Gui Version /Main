@@ -123,8 +123,26 @@ local toolDefs = {
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Mannrobics.mp3",
         AnimationId = 137456359844967,
     },
+    {
+        Name        = "Step",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Step.mp3",
+        AnimationId = 124074233795203,
+    },
+    {
+        Name        = "Poke Dance",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Poke%20Dance.mp3",
+        AnimationId = 18986687692,
+    },
+    {
+        Name        = "Spooky Month",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Spooky%20Month.mp3",
+        AnimationId = 15231364673,
+    },
     -- add more tools here...
 }
+
+
+
 
 
 -- ► REMOVE TOOL (fully cleans up)
