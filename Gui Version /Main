@@ -222,33 +222,49 @@ end
 -- ► GUI BUILD
 local gui = Instance.new("ScreenGui")
 gui.Name = "R6AnimatorGui"
-gui.ResetOnSpawn = false
 gui.Parent = game.CoreGui
 
--- Main window
 local main = Instance.new("Frame", gui)
-main.Size = UDim2.new(0, 420, 0, 300)
+main.Size = UDim2.new(0, 420, 0, 320)
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.Position = UDim2.new(0.5, 0, 0.5, 0)
-main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-main.ClipsDescendants = true
-Instance.new("UICorner", main).CornerRadius = UDim.new(0, 12)
+main.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Instance.new("UICorner", main).CornerRadius = UDim.new(0,12)
 
--- Title & separator
+-- Title
 local title = Instance.new("TextLabel", main)
 title.Text = "R6 Animator"
 title.Font = Enum.Font.GothamBlack
 title.TextSize = 24
-title.TextColor3 = Color3.new(1, 1, 1)
+title.TextColor3 = Color3.new(1,1,1)
 title.BackgroundTransparency = 1
 title.Size = UDim2.new(1, -20, 0, 30)
 title.Position = UDim2.new(0, 10, 0, 10)
 
+-- Separator
 local sep = Instance.new("Frame", main)
 sep.Size = UDim2.new(1, -20, 0, 2)
 sep.Position = UDim2.new(0, 10, 0, 45)
-sep.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+sep.BackgroundColor3 = Color3.fromRGB(70,70,70)
 sep.BorderSizePixel = 0
+
+-- Scroll container
+local scrollFrame = Instance.new("ScrollingFrame", main)
+scrollFrame.Size = UDim2.new(1, -20, 1, -70)
+scrollFrame.Position = UDim2.new(0, 10, 0, 60)
+scrollFrame.BackgroundTransparency = 1
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+scrollFrame.ScrollBarThickness = 6
+scrollFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+
+local gridLayout = Instance.new("UIGridLayout", scrollFrame)
+gridLayout.CellSize = UDim2.new(0, 95, 0, 50)
+gridLayout.CellPadding = UDim2.new(0, 10, 0, 10)
+gridLayout.FillDirectionMaxCells = 4
+gridLayout.FillDirection = Enum.FillDirection.Horizontal
+gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+gridLayout.VerticalAlignment = Enum.VerticalAlignment.Top
+gridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 
 -- Minimize button
 local minBtn = Instance.new("TextButton", main)
@@ -259,39 +275,14 @@ minBtn.Size = UDim2.new(0, 30, 0, 30)
 minBtn.Position = UDim2.new(1, -35, 0, 5)
 minBtn.BorderSizePixel = 0
 
--- Mini reopen button
 local mini = Instance.new("TextButton", gui)
 mini.Text = "Open"
-mini.TextColor3 = Color3.new(1, 1, 1)
-mini.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-mini.BorderColor3 = Color3.fromRGB(80, 80, 80)
-mini.Size = UDim2.new(0, 80, 0, 30)
-mini.Position = UDim2.new(0, 10, 0, 10)
+mini.TextColor3 = Color3.new(1,1,1)
+mini.BackgroundColor3 = Color3.fromRGB(45,45,45)
+mini.BorderColor3 = Color3.fromRGB(80,80,80)
+mini.Size = UDim2.new(0,80,0,30)
+mini.Position = UDim2.new(0,10,0,10)
 mini.Visible = false
-
--- Make mini draggable
-do
-    local dragging, startPos, dragStart = false
-    InputService.InputChanged:Connect(function(i)
-        if dragging and i.UserInputType == Enum.UserInputType.MouseMovement then
-            local delta = i.Position - dragStart
-            mini.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
-                                      startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-        end
-    end)
-    mini.InputBegan:Connect(function(i)
-        if i.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = true
-            dragStart = i.Position
-            startPos = mini.Position
-            i.Changed:Connect(function()
-                if i.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
-end
 
 minBtn.MouseButton1Click:Connect(function()
     main.Visible = false
@@ -302,42 +293,30 @@ mini.MouseButton1Click:Connect(function()
     mini.Visible = false
 end)
 
--- ► Scrollable container
-local scroll = Instance.new("ScrollingFrame", main)
-scroll.Size = UDim2.new(1, -20, 1, -70)
-scroll.Position = UDim2.new(0, 10, 0, 60)
-scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
-scroll.ScrollBarThickness = 6
-scroll.BackgroundTransparency = 1
-scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
-scroll.ClipsDescendants = true
-
-local layout = Instance.new("UIGridLayout", scroll)
-layout.CellSize = UDim2.new(0, 120, 0, 50)
-layout.CellPadding = UDim.new(0, 10)
-layout.FillDirection = Enum.FillDirection.Horizontal
-layout.FillDirectionMaxCells = 4
-layout.SortOrder = Enum.SortOrder.Name
-
--- ► Buttons
+-- Buttons for each tool
 for _, def in ipairs(toolDefs) do
-    local btn = Instance.new("TextButton", scroll)
-    btn.Size = UDim2.new(0, 120, 0, 50)
-    btn.Text = def.Name .. " (OFF)"
-    btn.Font = Enum.Font.SourceSansBold
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0, 95, 0, 50)
     btn.TextWrapped = true
-    btn.TextScaled = true
-    btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-    btn.TextColor3 = Color3.new(1, 1, 1)
+    btn.TextTruncate = Enum.TextTruncate.AtEnd
+    btn.Text = def.Name .. " (OFF)"
+    btn.Font = Enum.Font.SourceSans
+    btn.TextSize = 14
+    btn.BackgroundColor3 = Color3.fromRGB(60,60,60)
+    btn.TextColor3 = Color3.new(1,1,1)
     btn.BorderSizePixel = 2
-    btn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    btn.BorderColor3 = Color3.fromRGB(0,0,0)
+    btn.Parent = scrollFrame
 
     local on = false
     btn.MouseButton1Click:Connect(function()
         on = not on
-        btn.Text = def.Name .. (on and " (ON)" or " (OFF)")
-        btn.BorderColor3 = on and Color3.fromRGB(0, 170, 255) or Color3.fromRGB(0, 0, 0)
-        if on then spawnTool(def) else removeTool(def) end
+        btn.Text = def.Name .. " (" .. (on and "ON" or "OFF") .. ")"
+        btn.BorderColor3 = on and Color3.fromRGB(0,170,255) or Color3.fromRGB(0,0,0)
+        if on then
+            spawnTool(def)
+        else
+            removeTool(def)
+        end
     end)
 end
-
