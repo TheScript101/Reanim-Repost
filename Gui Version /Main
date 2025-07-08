@@ -221,69 +221,71 @@ end
 
 -- ► GUI BUILD
 local gui = Instance.new("ScreenGui")
-gui.Name   = "R6AnimatorGui"
+gui.Name = "R6AnimatorGui"
+gui.ResetOnSpawn = false
 gui.Parent = game.CoreGui
 
 -- Main window
 local main = Instance.new("Frame", gui)
-main.Size             = UDim2.new(0,400,0,250)
-main.AnchorPoint      = Vector2.new(0.5,0.5)
-main.Position         = UDim2.new(0.5,0,0.5,0)
-main.BackgroundColor3 = Color3.fromRGB(30,30,30)
-Instance.new("UICorner", main).CornerRadius = UDim.new(0,12)
+main.Size = UDim2.new(0, 420, 0, 300)
+main.AnchorPoint = Vector2.new(0.5, 0.5)
+main.Position = UDim2.new(0.5, 0, 0.5, 0)
+main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+main.ClipsDescendants = true
+Instance.new("UICorner", main).CornerRadius = UDim.new(0, 12)
 
 -- Title & separator
 local title = Instance.new("TextLabel", main)
-title.Text                = "R6 Animator"
-title.Font                = Enum.Font.GothamBlack
-title.TextSize            = 24
-title.TextColor3          = Color3.new(1,1,1)
+title.Text = "R6 Animator"
+title.Font = Enum.Font.GothamBlack
+title.TextSize = 24
+title.TextColor3 = Color3.new(1, 1, 1)
 title.BackgroundTransparency = 1
-title.Size                = UDim2.new(1,-20,0,30)
-title.Position            = UDim2.new(0,10,0,10)
+title.Size = UDim2.new(1, -20, 0, 30)
+title.Position = UDim2.new(0, 10, 0, 10)
 
 local sep = Instance.new("Frame", main)
-sep.Size             = UDim2.new(1,-20,0,2)
-sep.Position         = UDim2.new(0,10,0,45)
-sep.BackgroundColor3 = Color3.fromRGB(70,70,70)
-sep.BorderSizePixel  = 0
+sep.Size = UDim2.new(1, -20, 0, 2)
+sep.Position = UDim2.new(0, 10, 0, 45)
+sep.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+sep.BorderSizePixel = 0
 
 -- Minimize button
 local minBtn = Instance.new("TextButton", main)
-minBtn.Text             = "-"
-minBtn.TextColor3       = Color3.new(1,1,1)
-minBtn.BackgroundColor3 = Color3.fromRGB(50,50,50)
-minBtn.Size             = UDim2.new(0,30,0,30)
-minBtn.Position         = UDim2.new(1,-35,0,5)
-minBtn.BorderSizePixel  = 0
+minBtn.Text = "-"
+minBtn.TextColor3 = Color3.new(1, 1, 1)
+minBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+minBtn.Size = UDim2.new(0, 30, 0, 30)
+minBtn.Position = UDim2.new(1, -35, 0, 5)
+minBtn.BorderSizePixel = 0
 
 -- Mini reopen button
 local mini = Instance.new("TextButton", gui)
-mini.Text               = "Open"
-mini.TextColor3         = Color3.new(1,1,1)
-mini.BackgroundColor3   = Color3.fromRGB(45,45,45)
-mini.BorderColor3       = Color3.fromRGB(80,80,80)
-mini.Size               = UDim2.new(0,80,0,30)
-mini.Position           = UDim2.new(0,10,0,10)
-mini.Visible            = false
+mini.Text = "Open"
+mini.TextColor3 = Color3.new(1, 1, 1)
+mini.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+mini.BorderColor3 = Color3.fromRGB(80, 80, 80)
+mini.Size = UDim2.new(0, 80, 0, 30)
+mini.Position = UDim2.new(0, 10, 0, 10)
+mini.Visible = false
 
 -- Make mini draggable
 do
     local dragging, startPos, dragStart = false
     InputService.InputChanged:Connect(function(i)
-        if dragging and i.UserInputType==Enum.UserInputType.MouseMovement then
+        if dragging and i.UserInputType == Enum.UserInputType.MouseMovement then
             local delta = i.Position - dragStart
             mini.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
                                       startPos.Y.Scale, startPos.Y.Offset + delta.Y)
         end
     end)
     mini.InputBegan:Connect(function(i)
-        if i.UserInputType==Enum.UserInputType.MouseButton1 then
+        if i.UserInputType == Enum.UserInputType.MouseButton1 then
             dragging = true
             dragStart = i.Position
-            startPos  = mini.Position
+            startPos = mini.Position
             i.Changed:Connect(function()
-                if i.UserInputState==Enum.UserInputState.End then
+                if i.UserInputState == Enum.UserInputState.End then
                     dragging = false
                 end
             end)
@@ -300,34 +302,42 @@ mini.MouseButton1Click:Connect(function()
     mini.Visible = false
 end)
 
--- Tools container
-local container = Instance.new("Frame", main)
-container.Size               = UDim2.new(1,-20,1,-70)
-container.Position           = UDim2.new(0,10,0,60)
-container.BackgroundTransparency = 1
+-- ► Scrollable container
+local scroll = Instance.new("ScrollingFrame", main)
+scroll.Size = UDim2.new(1, -20, 1, -70)
+scroll.Position = UDim2.new(0, 10, 0, 60)
+scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+scroll.ScrollBarThickness = 6
+scroll.BackgroundTransparency = 1
+scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+scroll.ClipsDescendants = true
 
-local layout = Instance.new("UIListLayout", container)
+local layout = Instance.new("UIGridLayout", scroll)
+layout.CellSize = UDim2.new(0, 120, 0, 50)
+layout.CellPadding = UDim.new(0, 10)
 layout.FillDirection = Enum.FillDirection.Horizontal
-layout.SortOrder     = Enum.SortOrder.Name
-layout.Padding       = UDim.new(0,10)
+layout.FillDirectionMaxCells = 4
+layout.SortOrder = Enum.SortOrder.Name
 
--- Create a toggle button for each tool
+-- ► Buttons
 for _, def in ipairs(toolDefs) do
-    local btn = Instance.new("TextButton", container)
-    btn.Size             = UDim2.new(0,80,0,40)
-    btn.Text             = def.Name.." (OFF)"
-    btn.Font             = Enum.Font.SourceSans
-    btn.TextSize         = 14
-    btn.BackgroundColor3 = Color3.fromRGB(60,60,60)
-    btn.TextColor3       = Color3.new(1,1,1)
-    btn.BorderSizePixel  = 2
-    btn.BorderColor3     = Color3.fromRGB(0,0,0)
+    local btn = Instance.new("TextButton", scroll)
+    btn.Size = UDim2.new(0, 120, 0, 50)
+    btn.Text = def.Name .. " (OFF)"
+    btn.Font = Enum.Font.SourceSansBold
+    btn.TextWrapped = true
+    btn.TextScaled = true
+    btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    btn.TextColor3 = Color3.new(1, 1, 1)
+    btn.BorderSizePixel = 2
+    btn.BorderColor3 = Color3.fromRGB(0, 0, 0)
 
     local on = false
     btn.MouseButton1Click:Connect(function()
         on = not on
-        btn.Text         = def.Name.." ("..(on and "ON" or "OFF")..")"
-        btn.BorderColor3 = on and Color3.fromRGB(0,170,255) or Color3.fromRGB(0,0,0)
+        btn.Text = def.Name .. (on and " (ON)" or " (OFF)")
+        btn.BorderColor3 = on and Color3.fromRGB(0, 170, 255) or Color3.fromRGB(0, 0, 0)
         if on then spawnTool(def) else removeTool(def) end
     end)
 end
+
