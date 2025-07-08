@@ -112,7 +112,20 @@ local toolDefs = {
         Name        = "Breakdance",
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Breakdance.mp3",
         AnimationId = 132886479585903,
+    },
+    {
+        Name        = "Insanity",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Insanity.mp3",
+        AnimationId = 139483347792972,
+    },
+    {
+        Name        = "Mannrobics",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Mannrobics.mp3",
+        AnimationId = 137456359844967,
+    },
+    -- add more tools here...
 }
+
 
 -- ► REMOVE TOOL (fully cleans up)
 local function removeTool(def)
