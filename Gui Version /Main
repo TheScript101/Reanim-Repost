@@ -53,7 +53,13 @@ local toolDefs = {
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Two.mp3",
         AnimationId = 137845929482571,
     },
---more here
+    {
+        Name        = "The Flop",
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/The%20Flop.mp3",
+        AnimationId = 84447598378239,
+    },
+    {
+--more
 }
 
 -- ► REMOVE TOOL (fully cleans up)
