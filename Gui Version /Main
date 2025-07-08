@@ -9,6 +9,51 @@ local player     = Players.LocalPlayer
 local backpack   = player:FindFirstChild("Backpack") or player:WaitForChild("Backpack")
 local activeTools = {}
 
+-- ► Turn Off Collisions (Client‑Only)
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+-- ► disable collisions on every BasePart in a character
+local function disableCollisionsOnCharacter(char: Model)
+    if not char then return end
+    -- immediate disable
+    for _, part in ipairs(char:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+    -- future parts too (e.g. accessories)
+    char.DescendantAdded:Connect(function(desc)
+        if desc:IsA("BasePart") then
+            desc.CanCollide = false
+        end
+    end)
+end
+
+-- apply to local player
+if localPlayer.Character then
+    disableCollisionsOnCharacter(localPlayer.Character)
+end
+localPlayer.CharacterAdded:Connect(disableCollisionsOnCharacter)
+
+-- apply to all other players
+for _, pl in ipairs(Players:GetPlayers()) do
+    if pl ~= localPlayer then
+        if pl.Character then
+            disableCollisionsOnCharacter(pl.Character)
+        end
+        pl.CharacterAdded:Connect(disableCollisionsOnCharacter)
+    end
+end
+
+-- keep up with new players joining
+Players.PlayerAdded:Connect(function(pl)
+    pl.CharacterAdded:Connect(disableCollisionsOnCharacter)
+    if pl.Character then
+        disableCollisionsOnCharacter(pl.Character)
+    end
+end)
+
 -- ► NOTIFICATIONS
 pcall(function()
     StarterGui:SetCore("SendNotification", {
