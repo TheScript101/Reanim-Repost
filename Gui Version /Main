@@ -163,7 +163,7 @@ local toolDefs = {
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Lonely%20Lonely.mp3",
         AnimationId = 92699725136780,
     },
-    { --hi
+    {
         Name        = "Hakari 2",
         Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/hakari-dance-made-with-Voicemod.mp3",
         AnimationId = 107449707929013,
@@ -366,6 +366,8 @@ local function updateScrollCanvas()
     task.wait()
     scrollFrame.CanvasSize = UDim2.new(0, 0, 0, gridLayout.AbsoluteContentSize.Y + 10)
 end
+gridLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(updateScrollCanvas)
+
 
 -- Minimize button
 local minBtn = Instance.new("TextButton", main)
