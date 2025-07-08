@@ -115,7 +115,7 @@ local function spawnTool(def)
         if data and data.Sound     then data.Sound:Stop();     data.Sound:Destroy();     data.Sound = nil end
     end)
     task.spawn(function()
-        task.wait(0.2)
+        task.wait(0.6)
         for _, t in ipairs(backpack:GetChildren()) do
             if t == tool then
                 local hum = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
