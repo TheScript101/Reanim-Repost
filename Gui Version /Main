@@ -313,7 +313,7 @@ local toolDefs = {
     {
         Name        = "Laugh 2",
         Page        = "2", 
-        Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/laugh-made-with-Voicemod%20(1).mp3",
+        Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/blob/main/Sounds/mutahar's-laugh-made-with-Voicemod.mp3",
         AnimationId = 16102596662,
     },
     {
