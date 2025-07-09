@@ -256,8 +256,40 @@ local toolDefs = {
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Get%20Down.mp3",
         AnimationId = 98916367562022,
     },
+    {
+        Name        = "Dia Delicia",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Dia%20Delicia.mp3",
+        AnimationId = 80641587562132,
+    },
+    {
+        Name        = "Epik",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Epik.mp3",
+        AnimationId = 135424282094138,
+    },
+    {
+        Name        = "Shigure",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Loli%20Dance.mp3",
+        AnimationId = 14887006269,
+    },
+    {
+        Name        = "I WANNA RUN AWAY",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/IWRA.mp3",
+        AnimationId = 131562546189485,
+    },
+    {
+        Name        = "WhatsApp Meme",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/WhatsApp%20Meme.mp3",
+        AnimationId = 131539514978219,
+    },
     -- add more tools here...
 }
+
+
 
 
 
