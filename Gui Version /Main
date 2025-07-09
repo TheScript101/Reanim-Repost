@@ -90,101 +90,121 @@ end)
 local toolDefs = {
     {
         Name        = "The Hero",
+        Page        = "1"
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/The%20Hero.mp3",
         AnimationId = 133160365635320,
     },
     {
         Name        = "Two",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Two.mp3",
         AnimationId = 137845929482571,
     },
     {
         Name        = "The Flop",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/The%20Flop.mp3",
         AnimationId = 84447598378239,
     },
     {
-        Name        = "Club Penguin",
+        Name        = "Club Penguin", 
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Club%20Penguin.mp3",
         AnimationId = 89761302048916,
     },
     {
         Name        = "Breakdance",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Breakdance.mp3",
         AnimationId = 132886479585903,
     },
     {
         Name        = "Insanity",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Insanity.mp3",
         AnimationId = 139483347792972,
     },
     {
         Name        = "Mannrobics",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Mannrobics.mp3",
         AnimationId = 137456359844967,
     },
     {
         Name        = "Step",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Step.mp3",
         AnimationId = 124074233795203,
     },
     {
         Name        = "Poke Dance",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Poke%20Dance.mp3",
         AnimationId = 18986687692,
     },
     {
         Name        = "Spooky Month",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Spooky%20Month.mp3",
         AnimationId = 15231364673,
     },
     {
         Name        = "Chinese Dance",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Chinese%20Dance.mp3",
         AnimationId = 124210157097622,
     },
     {
         Name        = "Doodle",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Doodle.mp3",
         AnimationId = 137721173051346,
     },
     {
         Name        = "Shinji Chair",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Shinji%20Meme.mp3",
         AnimationId = 130485792890829,
     },
     {
         Name        = "Rakuten Lemonade",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Rakuten%20Lemonade.mp3",
         AnimationId = 18985726113,
     },
     {
         Name        = "Hakari 1",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Lonely%20Lonely.mp3",
         AnimationId = 92699725136780,
     },
     {
         Name        = "Hakari 2",
+        Page        = "1", 
         Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/hakari-dance-made-with-Voicemod.mp3",
         AnimationId = 107449707929013,
     },
     {
         Name        = "Boppin",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Boppin.mp3",
         AnimationId = 13579968035,
     },
     {
         Name        = "Shuba Duck",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Hey%20Ya.mp3",
         AnimationId = 13357063395,
     },
     {
         Name        = "Goopie",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Goopie.mp3",
         AnimationId = 7828640127,
     },
     {
         Name        = "Prince Of Egypt",
+        Page        = "1", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Prince%20Of%20Egypt.mp3",
         AnimationId = 100136360352723,
     },
@@ -341,7 +361,7 @@ sep.Position = UDim2.new(0, 10, 0, 45)
 sep.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
 sep.BorderSizePixel = 0
 
--- FIXED ScrollFrame (fully functional on mobile)
+-- remove this scroll frame
 local scrollFrame = Instance.new("ScrollingFrame", main)
 scrollFrame.Size = UDim2.new(1, -20, 1, -70)
 scrollFrame.Position = UDim2.new(0, 10, 0, 60)
@@ -355,12 +375,12 @@ scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- handled by layout
 scrollFrame.ClipsDescendants = true
 scrollFrame.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 
--- Add padding
+-- Add padding maybe remove this idk
 local padding = Instance.new("UIPadding", scrollFrame)
 padding.PaddingTop = UDim.new(0, 10)
 padding.PaddingBottom = UDim.new(0, 10)
 
--- Layout for buttons
+-- Layout for buttons (don't remove this)
 local gridLayout = Instance.new("UIGridLayout", scrollFrame)
 gridLayout.CellSize = UDim2.new(0, 70, 0, 50)
 gridLayout.CellPadding = UDim2.new(0, 10, 0, 10)
@@ -370,7 +390,7 @@ gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 gridLayout.VerticalAlignment = Enum.VerticalAlignment.Top
 gridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 
--- Make sure canvas updates
+-- Make sure canvas updates (idk)
 gridLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
     scrollFrame.CanvasSize = UDim2.new(0, 0, 0, gridLayout.AbsoluteContentSize.Y + 20)
 end)
