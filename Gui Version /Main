@@ -305,10 +305,10 @@ local toolDefs = {
         AnimationId = 118452043589079,
     },
     {
-        Name        = "Monoko",
+        Name        = "Laugh",
         Page        = "2", 
-        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Monoko.mp3",
-        AnimationId = 139889845987864,
+        Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/laugh-made-with-Voicemod.mp3",
+        AnimationId = 13845017130,
     },
     -- add more tools here...
 }
