@@ -330,8 +330,15 @@ local toolDefs = {
         Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/pick-up-the-phone-made-with-Voicemod.mp3",
         AnimationId = 123845810306597,
     },
+    {
+        Name        = "Hysteria",
+        Page        = "3", 
+        Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/i-think-i'll-lose-my-mind-in-hysteria...-made-with-Voicemod.mp3",
+        AnimationId = 131919562012987,
+    },
     -- add more tools here...
 }
+
 
 
 
