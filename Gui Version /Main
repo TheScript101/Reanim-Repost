@@ -336,8 +336,15 @@ local toolDefs = {
         Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/i-think-i'll-lose-my-mind-in-hysteria...-made-with-Voicemod.mp3",
         AnimationId = 131919562012987,
     },
+    {
+        Name        = "StarStriker",
+        Page        = "3", 
+        Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/jojo's-bizarre-adventure-golden-wind-ost-giorno's-theme%E3%80%8Eil-vent-made-with-Voicemod.mp3",
+        AnimationId = 126271443897103,
+    },
     -- add more tools here...
 }
+
 
 
 
