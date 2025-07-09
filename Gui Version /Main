@@ -631,17 +631,24 @@ end
 updatePageDisplay()
 
 -- Pagination button handlers
+local maxPage = 3
+
 nextBtn.MouseButton1Click:Connect(function()
     currentPage += 1
-    if currentPage > 2 then currentPage = 1 end
+    if currentPage > maxPage then
+        currentPage = 1
+    end
     updatePageDisplay()
 end)
 
 prevBtn.MouseButton1Click:Connect(function()
     currentPage -= 1
-    if currentPage < 1 then currentPage = 2 end
+    if currentPage < 1 then
+        currentPage = maxPage
+    end
     updatePageDisplay()
 end)
+
 
 -- Search filter logic
 searchBox:GetPropertyChangedSignal("Text"):Connect(function()
