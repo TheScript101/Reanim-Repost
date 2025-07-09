@@ -286,8 +286,33 @@ local toolDefs = {
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/WhatsApp%20Meme.mp3",
         AnimationId = 131539514978219,
     },
+    {
+        Name        = "Goofy",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Goofy%20Song.mp3",
+        AnimationId = 75148929064618,
+    },
+    {
+        Name        = "Who Can It Be Now? ",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/WCIBN.mp3",
+        AnimationId = 16240038168,
+    },
+    {
+        Name        = "Pretty Princess",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Pretty%20Princess%20Theme.mp3",
+        AnimationId = 118452043589079,
+    },
+    {
+        Name        = "Monoko",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/Monoko.mp3",
+        AnimationId = 139889845987864,
+    },
     -- add more tools here...
 }
+
 
 
 
