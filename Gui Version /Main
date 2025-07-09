@@ -310,8 +310,27 @@ local toolDefs = {
         Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/laugh-made-with-Voicemod.mp3",
         AnimationId = 13845017130,
     },
+    {
+        Name        = "Laugh 2",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/laugh-made-with-Voicemod",
+        AnimationId = 16102596662,
+    },
+    {
+        Name        = "Wait,
+        Page        = "2", 
+        Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/they-dont-love-you-like-i-love-you-made-with-Voicemod.mp3",
+        AnimationId = 107654449068194,
+    },
+    {
+        Name        = "Pick Up The Phone",
+        Page        = "2", 
+        Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/pick-up-the-phone-made-with-Voicemod.mp3",
+        AnimationId = 123845810306597,
+    },
     -- add more tools here...
 }
+
 
 
 
