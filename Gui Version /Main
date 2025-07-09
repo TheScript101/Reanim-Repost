@@ -410,12 +410,12 @@ pageLabel.TextSize = 16
 pageLabel.TextColor3 = Color3.new(1,1,1)
 pageLabel.BackgroundTransparency = 1
 pageLabel.Size = UDim2.new(0, 100, 0, 30)
-pageLabel.Position = UDim2.new(0.5, -50, 1, -30)
+pageLabel.Position = UDim2.new(0.5, -50, 1, -35)
 
 local prevBtn = Instance.new("TextButton", main)
 prevBtn.Text = "<"
 prevBtn.Size = UDim2.new(0, 30, 0, 30)
-prevBtn.Position = UDim2.new(0.5, -100, 1, -30)
+prevBtn.Position = UDim2.new(0.5, -100, 1, -35)
 prevBtn.BackgroundColor3 = Color3.fromRGB(50,50,50)
 prevBtn.TextColor3 = Color3.new(1,1,1)
 Instance.new("UICorner", prevBtn).CornerRadius = UDim.new(0, 4)
@@ -423,7 +423,7 @@ Instance.new("UICorner", prevBtn).CornerRadius = UDim.new(0, 4)
 local nextBtn = Instance.new("TextButton", main)
 nextBtn.Text = ">"
 nextBtn.Size = UDim2.new(0, 30, 0, 30)
-nextBtn.Position = UDim2.new(0.5, 70, 1, -30)
+nextBtn.Position = UDim2.new(0.5, 70, 1, -35)
 nextBtn.BackgroundColor3 = Color3.fromRGB(50,50,50)
 nextBtn.TextColor3 = Color3.new(1,1,1)
 Instance.new("UICorner", nextBtn).CornerRadius = UDim.new(0, 4)
@@ -436,6 +436,13 @@ sep.Position = UDim2.new(0, 10, 0, 45)
 sep.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
 sep.BorderSizePixel = 0
 
+-- Divider 2
+local sep2 = Instance.new("Frame", main)
+sep2.Size = UDim2.new(1, -20, 0, 2)
+sep2.Position = UDim2.new(0, 10, 1, -45)
+sep2.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+sep2.BorderSizePixel = 0
+
 -- Replace ScrollFrame with static button container
 local buttonContainer = Instance.new("Frame", main)
 buttonContainer.Size = UDim2.new(1, -20, 1, -100)
@@ -445,8 +452,8 @@ buttonContainer.ClipsDescendants = true
 
 -- Layout for buttons (don't remove this)
 local gridLayout = Instance.new("UIGridLayout", buttonContainer)
-gridLayout.CellSize = UDim2.new(0, 70, 0, 40)
-gridLayout.CellPadding = UDim2.new(0, 10, 0, 5)
+gridLayout.CellSize = UDim2.new(0, 70, 0, 45)
+gridLayout.CellPadding = UDim2.new(0, 10, 0, 7.5)
 gridLayout.FillDirectionMaxCells = 5
 gridLayout.FillDirection = Enum.FillDirection.Horizontal
 gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
