@@ -317,7 +317,7 @@ local toolDefs = {
         AnimationId = 16102596662,
     },
     {
-        Name        = "Wait,
+        Name        = "Wait",
         Page        = "2", 
         Mp3Url      = "https://github.com/TheScript101/Reanim-Repost/raw/main/Sounds/they-dont-love-you-like-i-love-you-made-with-Voicemod.mp3",
         AnimationId = 107654449068194,
