@@ -293,7 +293,7 @@ local toolDefs = {
         AnimationId = 75148929064618,
     },
     {
-        Name        = "Who Can It Be Now?",
+        Name        = "Who Can It Be Now",
         Page        = "2", 
         Mp3Url      = "https://github.com/gObl00x/Epik-Musics/raw/refs/heads/main/WCIBN.mp3",
         AnimationId = 16240038168,
