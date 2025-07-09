@@ -341,20 +341,26 @@ sep.Position = UDim2.new(0, 10, 0, 45)
 sep.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
 sep.BorderSizePixel = 0
 
--- Scroll Frame (FIXED for mobile scrolling)
+-- FIXED ScrollFrame (fully functional on mobile)
 local scrollFrame = Instance.new("ScrollingFrame", main)
 scrollFrame.Size = UDim2.new(1, -20, 1, -70)
 scrollFrame.Position = UDim2.new(0, 10, 0, 60)
-scrollFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20) -- MUST HAVE BACKGROUND!
-scrollFrame.BackgroundTransparency = 0.1 -- Slightly visible
+scrollFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+scrollFrame.BackgroundTransparency = 0.1 -- NOT fully transparent
+scrollFrame.BorderSizePixel = 0
 scrollFrame.ScrollBarThickness = 6
-scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Let layout expand this
+scrollFrame.ScrollingEnabled = true
 scrollFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- handled by layout
 scrollFrame.ClipsDescendants = true
-scrollFrame.ScrollingEnabled = true -- Make sure it's explicitly enabled
 scrollFrame.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 
--- UIGridLayout (unchanged)
+-- Add padding
+local padding = Instance.new("UIPadding", scrollFrame)
+padding.PaddingTop = UDim.new(0, 10)
+padding.PaddingBottom = UDim.new(0, 10)
+
+-- Layout for buttons
 local gridLayout = Instance.new("UIGridLayout", scrollFrame)
 gridLayout.CellSize = UDim2.new(0, 70, 0, 50)
 gridLayout.CellPadding = UDim2.new(0, 10, 0, 10)
@@ -364,12 +370,11 @@ gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 gridLayout.VerticalAlignment = Enum.VerticalAlignment.Top
 gridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 
--- Force layout update function
-local function updateScrollCanvas()
-    task.wait()
-    scrollFrame.CanvasSize = UDim2.new(0, 0, 0, gridLayout.AbsoluteContentSize.Y + 10)
-end
-gridLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(updateScrollCanvas)
+-- Make sure canvas updates
+gridLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+    scrollFrame.CanvasSize = UDim2.new(0, 0, 0, gridLayout.AbsoluteContentSize.Y + 20)
+end)
+
 
 
 -- Minimize button
